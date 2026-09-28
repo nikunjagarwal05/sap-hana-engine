@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sap.engine</groupId>
+    <artifactId>sap-hana-engine</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>SAP HANA Hybrid Integration Engine (Parent)</name>
+    <description>Production-grade SAP HANA Hybrid Data Integration and Statistical Analytics Engine</description>
+
+    <modules>
+        <module>engine-core</module>
+        <module>engine-connector-jdbc</module>
+        <module>engine-connector-rest</module>
+        <module>engine-persistence</module>
+        <module>engine-ingestion</module>
+        <module>engine-analysis</module>
+        <module>engine-api</module>
+    </modules>
+
+    <properties>
+        <java.version>21</java.version>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <spring-boot.version>3.3.3</spring-boot.version>
+        <ngdbc.version>2.29.11</ngdbc.version>
+        <httpclient5.version>5.3.1</httpclient5.version>
+        <jackson.version>2.17.2</jackson.version>
+        <jjwt.version>0.12.6</jjwt.version>
+        <resilience4j.version>2.2.0</resilience4j.version>
+        <springdoc.version>2.6.0</springdoc.version>
+        <testcontainers.version>1.20.1</testcontainers.version>
+        <wiremock.version>3.9.1</wiremock.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- Spring Boot Dependencies BOM -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring-boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- Internal Engine Modules -->
+            <dependency>
+                <groupId>com.sap.engine</groupId>
+                <artifactId>engine-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sap.engine</groupId>
+                <artifactId>engine-connector-jdbc</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sap.engine</groupId>
+                <artifactId>engine-connector-rest</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sap.engine</groupId>
+                <artifactId>engine-persistence</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sap.engine</groupId>
+                <artifactId>engine-ingestion</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.sap.engine</groupId>
+                <artifactId>engine-analysis</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- SAP HANA JDBC Driver -->
+            <dependency>
+                <groupId>com.sap.cloud.db.jdbc</groupId>
+                <artifactId>ngdbc</artifactId>
+                <version>${ngdbc.version}</version>
+            </dependency>
+
+            <!-- Apache HttpClient 5 -->
+            <dependency>
+                <groupId>org.apache.httpcomponents.client5</groupId>
+                <artifactId>httpclient5</artifactId>
+                <version>${httpclient5.version}</version>
+            </dependency>
+
+            <!-- Resilience4j -->
+            <dependency>
+                <groupId>io.github.resilience4j</groupId>
+                <artifactId>resilience4j-spring-boot3</artifactId>
+                <version>${resilience4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.resilience4j</groupId>
+                <artifactId>resilience4j-retry</artifactId>
+                <version>${resilience4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.resilience4j</groupId>
+                <artifactId>resilience4j-circuitbreaker</artifactId>
+                <version>${resilience4j.version}</version>
+            </dependency>
+
+            <!-- JJWT for JWT Authentication -->
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-api</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-impl</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.jsonwebtoken</groupId>
+                <artifactId>jjwt-jackson</artifactId>
+                <version>${jjwt.version}</version>
+            </dependency>
+
+            <!-- SpringDoc OpenAPI (Swagger UI) -->
+            <dependency>
+                <groupId>org.springdoc</groupId>
+                <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+                <version>${springdoc.version}</version>
+            </dependency>
+
+            <!-- Testcontainers -->
+            <dependency>
+                <groupId>org.testcontainers</groupId>
+                <artifactId>testcontainers-bom</artifactId>
+                <version>${testcontainers.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- WireMock for REST API Mocking -->
+            <dependency>
+                <groupId>org.wiremock</groupId>
+                <artifactId>wiremock-standalone</artifactId>
+                <version>${wiremock.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.13.0</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                        <parameters>true</parameters>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>

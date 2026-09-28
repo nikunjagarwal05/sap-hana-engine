@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>com.sap.engine</groupId>
+        <artifactId>sap-hana-engine</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>engine-connector-jdbc</artifactId>
+    <name>Engine Connector JDBC (SAP HANA Direct SQL)</name>
+    <description>Direct SQL connector for SAP HANA Cloud using ngdbc and system view catalog introspection</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.sap.engine</groupId>
+            <artifactId>engine-core</artifactId>
+        </dependency>
+
+        <!-- SAP HANA JDBC Driver -->
+        <dependency>
+            <groupId>com.sap.cloud.db.jdbc</groupId>
+            <artifactId>ngdbc</artifactId>
+        </dependency>
+
+        <!-- HikariCP Connection Pool -->
+        <dependency>
+            <groupId>com.zaxxer</groupId>
+            <artifactId>HikariCP</artifactId>
+        </dependency>
+
+        <!-- Logging -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+
+        <!-- Testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+</project>
